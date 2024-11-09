@@ -26,26 +26,26 @@ class SortingAlgorithms:
             self.merge_sort(L, k)
             self.merge_sort(R, k)
 
-            i = j = k = 0
+            i = j = m = 0
 
             while i < len(L) and j < len(R):
                 if L[i] < R[j]:
-                    arr[k] = L[i]
+                    arr[m] = L[i]
                     i += 1
                 else:
-                    arr[k] = R[j]
+                    arr[m] = R[j]
                     j += 1
-                k += 1
+                m += 1
 
             while i < len(L):
-                arr[k] = L[i]
+                arr[m] = L[i]
                 i += 1
-                k += 1
+                m += 1
 
             while j < len(R):
-                arr[k] = R[j]
+                arr[m] = R[j]
                 j += 1
-                k += 1
+                m += 1
         return arr
 
 def experiment():
@@ -84,20 +84,22 @@ def experiment():
         plt.xlabel('k value')
         plt.ylabel('Time (seconds)')
         plt.title(f'Performance Comparison for size {size}')
+        plt.xticks(k_values)  # Set x-axis ticks to full numbers
         plt.legend()
         plt.savefig(os.path.join(output_dir, f'tim_sort_performance_{size}.png'))
         plt.close()
 
+    # Generate the overall optimal k value graph
     avg_overall_tim_sort_times = {k: sum(times) / len(times) for k, times in overall_tim_sort_times.items()}
     plt.figure()
     plt.plot(k_values, [avg_overall_tim_sort_times[k] for k in k_values], label='Tim Sort')
     plt.xlabel('k value')
     plt.ylabel('Average Time (seconds)')
     plt.title('Optimal k Value Determination')
+    plt.xticks(k_values)  # Set x-axis ticks to full numbers
     plt.legend()
     plt.savefig(os.path.join(output_dir, 'tim_sort_optimal_k.png'))
     plt.close()
 
 if __name__ == '__main__':
     experiment()
-
