@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+
+\title{Sorting Algorithms Analysis}
+\author{Aashish Harishchandre}
+\date{Deadline: November 13th 2024}
+
+\begin{document}
+
+\maketitle
+\pagenumbering{gobble}
+
+\href{https://github.com/AashishH15/SortingAlgorithmsTests}{GitHub Repository}
+
+\tableofcontents
+
+\newpage
+
+\section*{Hypothesis}
+
+Before conducting the experiments, the following expectations were made:
+
+\begin{itemize}
+    \item Insertion sort will perform better for small input sizes ($n \leq 25$) due to its simplicity and low overhead. For smaller sizes, insertion sort is expected to be the fastest.
+    \item Merge sort will be significantly faster for larger input sizes due to its $O(n \log n)$ time complexity.
+    \item The point where merge sort becomes more efficient than insertion sort is expected to be when $n \geq 25$.
+    \item Insertion sort will show the largest performance difference between best and worst cases, as its best case is $O(n)$ and worst case is $O(n^2)$. Merge sort will have the same runtime for best and worst cases, both being $O(n \log n)$.
+    \item Both algorithms will show increased execution time with larger input sizes, but merge sort's growth will be more gradual, while the increase in time for insertion sort will be much steeper.
+\end{itemize}
+
+\section*{Introduction}
+Your introduction content here.
+
+\section*{Methods}
+
+The experiments were conducted using the following setup and methodology:
+
+\subsection*{Implementation Details}
+\begin{itemize}
+    \item \textbf{Programming Language:} Python
+    \item \textbf{Libraries Used:}
+    \begin{itemize}
+        \item \texttt{\textbf{unittest}} for testing framework
+        \item \texttt{\textbf{random}} for generating test data (e.g. array inputs)
+        \item \texttt{\textbf{timeit}} for performance measurements
+        \item \texttt{\textbf{Matplotlib}} for visualization (e.g. Graphs)
+        \item \texttt{\textbf{Pandas}} for data organization
+        \item \texttt{\textbf{tabulate}} for formatted table output
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Algorithms Implemented}
+\begin{itemize}
+    \item \textbf{Insertion Sort:}
+    \begin{itemize}
+        \item In-place sorting algorithm
+        \item Implementation follows the standard approach with key comparison and shifting
+    \end{itemize}
+    \item \textbf{Merge Sort:}
+    \begin{itemize}
+        \item Recursive divide-and-conquer implementation
+        \item Uses auxiliary space for merging operations
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Testing Methodology}
+
+\begin{itemize}
+    \item \textbf{Performance Comparison Test:}
+    \begin{itemize}
+        \item Input sizes used: [10, 25, 50, 60, 80, 100, 500, 1000]
+        \item Random arrays generated using \texttt{random.sample()}
+        \item Each sort operation repeated 10 times (with \texttt{timeit} parameter \texttt{number = 10})
+        \item Times rounded to 10 decimal places for precision and readability
+    \end{itemize}
+    
+    \item \textbf{Best/Worst Case Analysis:}
+    \begin{itemize}
+        \item Input size: 1000 elements 
+        \begin{itemize}
+        \item[Note:] In hindsight this may have favored merge sort; but it wouldn't have made a big difference in the result either way.
+        \end{itemize}
+        \item Best case: Already sorted array (\texttt{range(size)})
+        \item Worst case: Reverse sorted array (\texttt{range(size, 0, -1)})
+        \item 10 iterations per test case to ensure accuracy
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Data Collection}
+\begin{itemize}
+    \item Individual performance measurements for each input size
+    \item Comparative measurements between algorithms
+    \item Best and worst-case timing for both algorithms
+    \item Generated visualizations saved as \textbf{\textit{PNG}} files as well as testing \textbf{\textit{Python}} code (All Provided in GitHub!)
+\end{itemize}
+
+\section*{Results:}
+
+\subsection*{Performance Comparison}
+The experiments produced several key visualizations:
+
+\begin{enumerate}
+    \item \textbf{Best vs worst case performance graphs for both algorithms}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.45\textwidth]{best_worst_case_insertion.png}
+        \includegraphics[width=0.45\textwidth]{best_worst_case_merge.png}
+        \caption{Best vs Worst Case Performance for Insertion \& Merge Sort}
+    \end{figure}
+
+    \subsubsection*{Best/Worst Case Analysis}
+    Findings:
+    \begin{itemize}
+        \item Insertion sort showed a very dramatic performance difference between best and worst cases.
+        \item Merge sort was pretty similar for best and worst case performance with surprisingly worst case pulling ahead just slightly.
+    \end{itemize}
+
+    \item \textbf{Comparison graph showing scaling behavior across all input sizes}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{performance_10.png}
+        \includegraphics[width=0.3\textwidth]{performance_25.png}
+        \includegraphics[width=0.3\textwidth]{performance_50.png}
+        \includegraphics[width=0.3\textwidth]{performance_60.png}
+        \includegraphics[width=0.3\textwidth]{performance_80.png}
+        \includegraphics[width=0.3\textwidth]{performance_100.png}
+        \includegraphics[width=0.3\textwidth]{performance_500.png}
+        \includegraphics[width=0.3\textwidth]{performance_1000.png}
+        \caption{Total Time Comparison Across All Input Sizes}
+    \end{figure}
+
+    \item \textbf{Performance comparison table with detailed timing data}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{performance_comparison_table.png}
+        \caption{Figure 3: Performance Comparison Table}
+    \end{figure}
+
+    \item \textbf{Individual size comparisons showing relative performance of both algorithms at each input size}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{total_performance.png}
+        \caption{Individual Size Comparisons}
+    \end{figure}
+\end{enumerate}
+
+\subsection*{Input Size Analysis}
+\textbf{Findings and Key observations from the data:}
+\begin{itemize}
+    \item Sizes 10–25 are favorable towards insertion sort; sizes 50-60 come close for both sorting algorithms, though merge sort generally has lower times.
+    \item Sizes above 60 are a clear advantage towards merge sort.
+    \item For small arrays ($n \leq 50$), insertion sort often outperformed merge sort but was nearly the same time for size 50.
+    \item Merge sort started showing a much faster performance for larger arrays from size of 80 and above ($n \geq 80$).
+    \item The crossover point occurred around $n = 50-60$ elements.
+    \item Insertion sort showed more variable performance across different input sizes seeing significant jump from 100 to 500 and 500 to 1000, whereas merge sort maintained more consistent performance scaling.
+\end{itemize}
+
+\section*{Discussion}
+
+\subsection*{Unexpected Findings}
+\begin{itemize}
+    \item The crossover point between insertion and merge sort occurred at a larger input size (50-60) than initially hypothesized (25), indicating that insertion sort’s simplicity provides a viable option for relatively small arrays.
+    \item The performance variance of both merge and insertion sort was greater than expected, especially for size 50, where at times either sorting algorithm would outperform the other.
+\end{itemize}
+
+\subsection*{Challenges Encountered}
+\begin{itemize}
+    \item Python's inherent overhead affected absolute timing measurements, though relative comparisons remain valid.
+    \begin{itemize}
+        \item Testing in C++ would've likely given more accurate results but would've still have likely followed the same trend as the Python testing.
+    \end{itemize}
+    \item Copying arrays for fair comparisons (\texttt{array.copy()}) added overhead to measurements, though consistently across algorithms.
+    \item System-dependent variations in timing measurements required multiple iterations to obtain reliable averages.
+    \item Practical implications differed somewhat from theoretical predictions:
+    \begin{itemize}
+        \item Insertion sort’s simplicity makes it efficient for even for medium sized datasets ($25 \leq n \leq 80$).
+        \item The overhead of recursion in merge sort becomes less significant with larger datasets.
+    \end{itemize}
+\end{itemize}
+
+\section*{Conclusions}
+Under the tested conditions:
+\begin{itemize}
+    \item Insertion sort is preferred for $n \leq 25$ elements.
+    \item Merge sort is significantly more efficient for $n \geq 80$ elements.
+    \item For $50 \leq n \leq 60$, the performance difference is negligible, so either algorithm could be used, with consideration for available memory.
+\end{itemize}
+
+These findings suggest that a hybrid sorting algorithm using insertion sort for small subarrays within merge sort could likely offer optimal performance across all input sizes. Merge sort’s consistent performance makes it a safer choice for general-purpose sorting, while insertion sort remains valuable for small datasets.
+
+\end{document}
