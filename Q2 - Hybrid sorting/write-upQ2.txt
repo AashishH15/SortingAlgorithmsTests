@@ -22,7 +22,7 @@
 Before conducting the experiments, the following expectations were made:
 
 \begin{itemize}
-    \item Tim Sort will outperform both Insertion Sort and Merge Sort for a wide range of input sizes due to its hybrid nature.
+    \item Tim Sort will outperform both Insertion Sort and Merge Sort for all of the input sizes due to being hybrid.
     \item The optimal value of $k$ (the threshold for switching from Merge Sort to Insertion Sort) will be close to the crossover point identified in Q1 (around 50-60 elements).
     \item Tim Sort will show more consistent performance across different input sizes compared to Insertion Sort.
 \end{itemize}
@@ -80,10 +80,6 @@ The experiments were conducted using the following setup and methodology:
     \end{itemize}
 \end{itemize}
 
-\subsection*{Source Code}
-The source code used for the experiments is available in the following repository:
-\url{https://github.com/AashishH15/SortingAlgorithmsTests}
-
 \section*{Results:}
 
 The experiments produced several key visualizations:
@@ -116,8 +112,8 @@ The experiments produced several key visualizations:
 \subsection*{Findings}
 \begin{itemize}
     \item Tim Sort generally outperformed both Insertion Sort and Merge Sort for a wide range of input sizes.
-    \item The optimal value of $k$ was found to be around 10-12, which is lower than the crossover point identified in Q1 (50-60 elements). This suggests that the hybrid nature of Tim Sort benefits from switching to Insertion Sort at a smaller partition size.
-    \item Tim Sort showed more consistent performance across different input sizes compared to Insertion Sort, which had more variable performance.
+    \item The optimal value of $k$ was found to be around 8-12, which is lower than the crossover point identified in Q1 (50-60 elements). Hybrid nature of Tim Sort benefits from switching to Insertion Sort at a smaller partition size.
+    \item Tim Sort showed more consistent performance across different input sizes compared to Insertion Sort, which had more variable performance. But disregarding k sizes lower than generally 10.
 \end{itemize}
 
 \subsection*{Challenges Encountered}
@@ -131,10 +127,10 @@ The experiments produced several key visualizations:
 Under the tested conditions:
 \begin{itemize}
     \item Tim Sort is generally the most efficient sorting algorithm for a wide range of input sizes.
-    \item The optimal value of $k$ for Tim Sort is around 10-12, which is lower than the crossover point identified in Q1.
+    \item The optimal value of $k$ for Tim Sort is around 10-12.
     \item Tim Sort provides more consistent performance compared to Insertion Sort, making it a safer choice for general-purpose sorting.
 \end{itemize}
 
-These findings suggest that Tim Sort, with an optimal $k$ value, offers a balanced and efficient sorting solution across various input sizes.
+Tim Sort, with an optimal $k$ value, offers a balanced and efficient sorting solution across various input sizes.
 
 \end{document}
