@@ -1,0 +1,140 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+
+\title{Tim Sort Analysis}
+\author{Aashish Harishchandre}
+\date{Deadline: November 13th 2024}
+
+\begin{document}
+
+\maketitle
+\pagenumbering{gobble}
+
+\section*{Github Repository:}
+\url{https://github.com/AashishH15/SortingAlgorithmsTests}
+
+\section*{Hypothesis}
+
+Before conducting the experiments, the following expectations were made:
+
+\begin{itemize}
+    \item Tim Sort will outperform both Insertion Sort and Merge Sort for a wide range of input sizes due to its hybrid nature.
+    \item The optimal value of $k$ (the threshold for switching from Merge Sort to Insertion Sort) will be close to the crossover point identified in Q1 (around 50-60 elements).
+    \item Tim Sort will show more consistent performance across different input sizes compared to Insertion Sort.
+\end{itemize}
+
+\section*{Methods}
+
+The experiments were conducted using the following setup and methodology:
+
+\subsection*{Implementation Details}
+\begin{itemize}
+    \item \textbf{Programming Language:} Python
+    \item \textbf{Libraries Used:}
+    \begin{itemize}
+        \item \texttt{\textbf{random}} for generating test data (e.g. array inputs)
+        \item \texttt{\textbf{timeit}} for performance measurements
+        \item \texttt{\textbf{Matplotlib}} for visualization (e.g. Graphs)
+        \item \texttt{\textbf{os}} for directory management
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Algorithms Implemented}
+\begin{itemize}
+    \item \textbf{Insertion Sort:}
+    \begin{itemize}
+        \item In-place sorting algorithm
+        \item Implementation follows the standard approach with key comparison and shifting
+    \end{itemize}
+    \item \textbf{Merge Sort:}
+    \begin{itemize}
+        \item Recursive divide-and-conquer implementation
+        \item Uses auxiliary space for merging operations
+    \end{itemize}
+    \item \textbf{Tim Sort:}
+    \begin{itemize}
+        \item Hybrid sorting algorithm combining Merge Sort and Insertion Sort
+        \item Switches to Insertion Sort for partitions smaller than or equal to a threshold $k$
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Testing Methodology}
+
+\begin{itemize}
+    \item \textbf{Performance Comparison Test:}
+    \begin{itemize}
+        \item Input sizes used: [10, 25, 50, 60, 80, 100, 500, 1000]
+        \item Random arrays generated using \texttt{random.sample()}
+        \item Each sort operation repeated 10 times (with \texttt{timeit} parameter \texttt{number = 10})
+        \item Times rounded to 10 decimal places for precision and readability
+    \end{itemize}
+    
+    \item \textbf{Optimal $k$ Value Determination:}
+    \begin{itemize}
+        \item Range of $k$ values tested: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+        \item Performance measured for each $k$ value across different input sizes
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Source Code}
+The source code used for the experiments is available in the following repository:
+\url{https://github.com/AashishH15/SortingAlgorithmsTests}
+
+\section*{Results:}
+
+The experiments produced several key visualizations:
+
+\begin{enumerate}
+    \item \textbf{Performance Comparison Graphs for Different Input Sizes}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_10.png}
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_25.png}
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_50.png}
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_60.png}
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_80.png}
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_100.png}
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_500.png}
+        \includegraphics[width=0.45\textwidth]{tim_sort_performance_1000.png}
+        \caption{Performance Comparison for Different Input Sizes}
+    \end{figure}
+
+    \item \textbf{Optimal $k$ Value Determination Graphs}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{tim_sort_optimal_k.png}
+        \caption{Optimal $k$ Value Determination}
+    \end{figure}
+\end{enumerate}
+
+\section*{Discussion}
+
+\subsection*{Findings}
+\begin{itemize}
+    \item Tim Sort generally outperformed both Insertion Sort and Merge Sort for a wide range of input sizes.
+    \item The optimal value of $k$ was found to be around 10-12, which is lower than the crossover point identified in Q1 (50-60 elements). This suggests that the hybrid nature of Tim Sort benefits from switching to Insertion Sort at a smaller partition size.
+    \item Tim Sort showed more consistent performance across different input sizes compared to Insertion Sort, which had more variable performance.
+\end{itemize}
+
+\subsection*{Challenges Encountered}
+\begin{itemize}
+    \item Python's inherent overhead affected absolute timing measurements, though relative comparisons remain valid.
+    \item System-dependent variations in timing measurements required multiple iterations to obtain reliable averages.
+    \item Determining the optimal $k$ value required extensive experimentation across a wide range of input sizes and $k$ values.
+\end{itemize}
+
+\section*{Conclusions}
+Under the tested conditions:
+\begin{itemize}
+    \item Tim Sort is generally the most efficient sorting algorithm for a wide range of input sizes.
+    \item The optimal value of $k$ for Tim Sort is around 10-12, which is lower than the crossover point identified in Q1.
+    \item Tim Sort provides more consistent performance compared to Insertion Sort, making it a safer choice for general-purpose sorting.
+\end{itemize}
+
+These findings suggest that Tim Sort, with an optimal $k$ value, offers a balanced and efficient sorting solution across various input sizes.
+
+\end{document}

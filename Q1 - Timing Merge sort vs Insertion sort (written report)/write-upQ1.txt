@@ -14,11 +14,8 @@
 \maketitle
 \pagenumbering{gobble}
 
-\href{https://github.com/AashishH15/SortingAlgorithmsTests}{GitHub Repository}
-
-\tableofcontents
-
-\newpage
+\section*{Github Repository:}
+\url{https://github.com/AashishH15/SortingAlgorithmsTests}
 
 \section*{Hypothesis}
 
@@ -31,9 +28,6 @@ Before conducting the experiments, the following expectations were made:
     \item Insertion sort will show the largest performance difference between best and worst cases, as its best case is $O(n)$ and worst case is $O(n^2)$. Merge sort will have the same runtime for best and worst cases, both being $O(n \log n)$.
     \item Both algorithms will show increased execution time with larger input sizes, but merge sort's growth will be more gradual, while the increase in time for insertion sort will be much steeper.
 \end{itemize}
-
-\section*{Introduction}
-Your introduction content here.
 
 \section*{Methods}
 
